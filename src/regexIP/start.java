@@ -18,28 +18,41 @@ public class start {
         try (BufferedReader br = new BufferedReader(new FileReader("neu.log"))) {
 
 
-            Pattern p = Pattern.compile("((\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|\\d)");
-            String zeile;
+            Pattern p = Pattern.compile("(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\." +
+                    "(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\." +
+                    "(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\. " +
+                    "(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])");
+
+
             int zaehler = 0;
 
+
+            String zeile;
             while ((zeile = br.readLine()) != null) {
+
                 Matcher m = p.matcher(zeile);
 
-                while (m.find())
-                    zaehler ++;
+
+
+
+            while (m.find()) {
+                System.out.printf("%02X.%02X.%02X.%02X\n",
+                        Integer.parseInt(m.group(1)),
+                        Integer.parseInt(m.group(2)),
+                        Integer.parseInt(m.group(3)),
+                        Integer.parseInt(m.group(4)));
+
 
             }
 
-            System.out.println(zaehler);
-
-
-
-            }catch(IOException e){
-                System.out.println("Datei wurde nicht gefunden....");
             }
 
 
-
+        } catch (IOException e) {
+            System.out.println("Datei wurde nicht gefunden....");
         }
+
+
     }
+}
 
