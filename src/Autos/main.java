@@ -19,7 +19,7 @@ public class main {
         for (String i : zeilen)
             System.out.println(i);
 
-        for (int index=0; index<zeilen.size(); index++) {
+        for (int index=0; index<zeilen.size()-1; index++) {
             String ort = zeilen.get(index);
             if (ort.matches("^DE.\\d{5}.*")) {
                 auto.setName(zeilen.get(index - 1));
@@ -41,7 +41,7 @@ public class main {
         }
 
 
-        for (int index=0; index<zeilen.size(); index++) {
+        for (int index=0; index<zeilen.size()-1; index++) {
             String preis = zeilen.get(index);
             if (preis.matches("^\\d+\\s€$")) {
                 auto.setPreis(preis);
